@@ -23,6 +23,10 @@
 
     "use strict";
 
+    /**
+     * Модель абстрактного назначения, с неопределенным количеством полей.
+     * @class RowsetModel
+     */
     var RowsetModel = Backbone.Model.extend({
 
       // Database connection and table name are specified with the urlRoot
