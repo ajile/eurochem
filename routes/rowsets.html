@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>rowsets.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="../docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>rowsets.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
+<span class="hljs-keyword">var</span> router = express.Router();
+<span class="hljs-keyword">var</span> _ = <span class="hljs-built_in">require</span>(<span class="hljs-string">'underscore'</span>);
+
+<span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
+<span class="hljs-keyword">var</span> parse = <span class="hljs-built_in">require</span>(<span class="hljs-string">'csv-parse'</span>);
+
+<span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>(<span class="hljs-string">'debug'</span>)(<span class="hljs-string">'routes:rowsets'</span>);
+<span class="hljs-keyword">var</span> RowsetModel = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../models/rowset'</span>);
+
+
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">parseAndCreate</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>The path to some CSV file contains an data</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> file = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>).normalize(__dirname + <span class="hljs-string">'/../datum/data_1.csv'</span>),</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Stream to read from file</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        stream = <span class="hljs-literal">null</span>;
+
+    <span class="hljs-comment">/**
+     * @function
+     */</span>
+    <span class="hljs-keyword">var</span> dataProceed = parse({delimiter: <span class="hljs-string">';'</span>}, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err, data)</span></span>{
+
+        <span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>(<span class="hljs-string">'debug'</span>)(<span class="hljs-string">'routes:rowsets:row'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Occures some errors</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> (!_.isNull(err)) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(err);
+        }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Iterate over the provided data. The first row of these rowset is
+a header of the CVS table present.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        _.each(data, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(row, index, rowset)</span> </span>{
+            <span class="hljs-keyword">if</span> (index === <span class="hljs-number">0</span>) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>First record is header being row. Should provide the
+field’s names presented by model. Here is DB table creating
+if doesn’t exists yet.
+debug(“header:”, row.join(‘,’));</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                _.each(row, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(field_name)</span> </span>{
+                    <span class="hljs-built_in">console</span>.log(field_name);
+                });
+            } <span class="hljs-keyword">else</span> {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>The regular record - write down into the created table at
+the previous iterate if its doesn’t exists.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                debug(<span class="hljs-string">"record:"</span>, row.join(<span class="hljs-string">','</span>));
+            }
+        }, <span class="hljs-keyword">this</span>);
+
+    });
+
+    debug(<span class="hljs-string">"Trying to read data file on path %s."</span>, file);
+
+    <span class="hljs-keyword">if</span> (!fs.existsSync(file)) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"File in path "</span> + file + <span class="hljs-string">" not found!"</span>);
+    }
+
+    debug(<span class="hljs-string">"Open a stream to read"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Make a stream to read from file</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    stream = fs.createReadStream(file, {flags: <span class="hljs-string">'r'</span>});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Proccess incoming data</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    stream.pipe(dataProceed);
+
+}
+
+
+
+<span class="hljs-comment">/* GET rowset listing. */</span>
+router.get(<span class="hljs-string">'/'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res)</span> </span>{
+    parseAndCreate();
+    res.render(<span class="hljs-string">'rowsets/table'</span>, {title: <span class="hljs-string">'Тестовое задание EuroChem'</span>});
+});
+
+<span class="hljs-comment">/* POST rowset listing. */</span>
+router.post(<span class="hljs-string">'/create/'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res)</span> </span>{
+	<span class="hljs-keyword">var</span> parser = parse({delimiter: <span class="hljs-string">';'</span>}, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err, data)</span></span>{
+	   	<span class="hljs-built_in">console</span>.log(data);
+	});
+
+	fs.createReadStream(__dirname + <span class="hljs-string">'/../datum/data_1.csv'</span>).pipe(parser);
+  	res.send(<span class="hljs-string">'Creating model'</span>);
+});
+
+<span class="hljs-built_in">module</span>.exports = router;</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
