@@ -1,0 +1,69 @@
+{
+	"folders":
+	[
+		{
+			// Project directore
+			"path": "./",
+
+			// Project name
+			"name": "Eurochem - server",
+
+			// Ignored folders (there borred)
+			"folder_exclude_patterns": [
+
+				// Node's modules
+				"node_modules",
+
+				// The bower components
+				"bower_components",
+
+				// Documentation
+				"doc",
+
+				// Test suites
+				"test"
+			],
+
+			// Ignore some files (we don't needs them)
+			"file_exclude_patterns": [
+				"eurochem.sublime-project",
+				"eurochem.sublime-workspace"
+			]
+		},
+		{
+			// Project directore
+			"path": "./doc/",
+
+			// Project name
+			"name": "Documentation",
+
+			// Ignored folders (there borred)
+			"folder_exclude_patterns": [
+				"*"
+			],
+
+			// Ignore some files (we don't needs them)
+			"file_exclude_patterns": [
+				"*"
+			]
+		},
+		{
+			// Project directore
+			"path": "./test/",
+
+			// Project name
+			"name": "Test suites"
+		}
+	],
+
+	"settings": {
+
+		// Auto transform all tabs into spaces
+		"translate_tabs_to_spaces": true,
+
+		// Vertical lines
+		"rulers": [80, 100]
+
+	}
+}
+
