@@ -39,12 +39,10 @@
 
 			// Ignored folders (there borred)
 			"folder_exclude_patterns": [
-				"*"
 			],
 
 			// Ignore some files (we don't needs them)
 			"file_exclude_patterns": [
-				"*"
 			]
 		},
 		{

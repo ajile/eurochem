@@ -1,6 +1,8 @@
 {
   "name": "eurochem-server",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "repository": "git@github.com:ajile/eurochem.git",
+  "description": "The test task for the EuroChem ltd.",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
@@ -20,5 +22,21 @@
     "mysql": "^2.5.2",
     "serve-favicon": "~2.1.3",
     "underscore": "^1.7.0"
+  },
+  "devDependencies": {
+    "ghooks": "^0.2.2",
+    "gulp": "^3.8.8",
+    "gulp-concat": "^2.4.1",
+    "gulp-gh-pages": "^0.4.0",
+    "gulp-ignore": "^1.2.1",
+    "gulp-jsdoc": "^0.1.4",
+    "gulp-jshint": "^1.8.5",
+    "gulp-rename": "^1.2.0",
+    "gulp-util": "^3.0.1"
+  },
+  "config": {
+    "ghooks": {
+      "pre-commit": "node_modules/.bin/gulp lint"
+    }
   }
 }

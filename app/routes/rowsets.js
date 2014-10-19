@@ -10,7 +10,7 @@ var RowsetModel = require('../models/rowset');
 
 
 
-function parseAndCreate(arguments) {
+function parseAndCreate() {
 
     // The path to some CSV file contains an data
     var file = require('path').normalize(__dirname + '/../datum/data_1.csv'),
@@ -33,14 +33,14 @@ function parseAndCreate(arguments) {
         // Iterate over the provided data. The first row of these rowset is
         // a header of the CVS table present.
         _.each(data, function(row, index, rowset) {
-            if (index == 0) {
+            if (index === 0) {
                 // First record is header being row. Should provide the
                 // field's names presented by model. Here is DB table creating
                 // if doesn't exists yet.
                 // debug("header:", row.join(','));
                 _.each(row, function(field_name) {
-                    console.log(field_name)
-                })
+                    console.log(field_name);
+                });
             } else {
                 // The regular record - write down into the created table at
                 // the previous iterate if its doesn't exists.
@@ -53,13 +53,13 @@ function parseAndCreate(arguments) {
     debug("Trying to read data file on path %s.", file);
 
     if (!fs.existsSync(file)) {
-        throw new Error("File in path " + file + " not found!")
+        throw new Error("File in path " + file + " not found!");
     }
 
     debug("Open a stream to read");
 
     // Make a stream to read from file
-    var stream = fs.createReadStream(file, {flags: 'r'});
+    stream = fs.createReadStream(file, {flags: 'r'});
 
     // Proccess incoming data
     stream.pipe(dataProceed);

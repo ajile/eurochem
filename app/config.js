@@ -13,7 +13,7 @@ var conf = convict({
 
 // load environment dependent configuration
 var env = conf.get('env');
-conf.loadFile('./config/' + env + '.json');
+conf.loadFile('./app/config/' + env + '.json');
 
 // perform validation
 
