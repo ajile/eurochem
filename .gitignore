@@ -10,6 +10,8 @@ bower_components/
 #
 # public/
 #
+server/public/javascripts
+server/public/stylesheets
 
 #
 # Доументация.

@@ -6,7 +6,7 @@
 			"path": "./",
 
 			// Project name
-			"name": "Eurochem - server",
+			"name": "Project",
 
 			// Ignored folders (there borred)
 			"folder_exclude_patterns": [
@@ -21,13 +21,78 @@
 				"doc",
 
 				// Test suites
-				"test"
+				"test",
+
+				"server",
+				"client",
+				"common"
 			],
 
 			// Ignore some files (we don't needs them)
 			"file_exclude_patterns": [
 				"eurochem.sublime-project",
 				"eurochem.sublime-workspace"
+			]
+		},
+		{
+			// Project directore
+			"path": "./server",
+
+			// Project name
+			"name": "Server",
+
+			// Ignored folders (there borred)
+			"folder_exclude_patterns": [
+
+				// Node's modules
+				"node_modules",
+
+				// Documentation
+				"doc"
+			],
+
+			// Ignore some files (we don't needs them)
+			"file_exclude_patterns": [
+				"eurochem.sublime-project",
+				"eurochem.sublime-workspace"
+			]
+		},
+		{
+			// Project directore
+			"path": "./client",
+
+			// Project name
+			"name": "Client",
+
+			// Ignored folders (there borred)
+			"folder_exclude_patterns": [
+
+				// The bower components
+				"bower_components",
+
+				// Documentation
+				"doc"
+			],
+
+			// Ignore some files (we don't needs them)
+			"file_exclude_patterns": [
+				"eurochem.sublime-project",
+				"eurochem.sublime-workspace"
+			]
+		},
+		{
+			// Project directore
+			"path": "./common",
+
+			// Project name
+			"name": "Common",
+
+			// Ignored folders (there borred)
+			"folder_exclude_patterns": [
+			],
+
+			// Ignore some files (we don't needs them)
+			"file_exclude_patterns": [
 			]
 		},
 		{

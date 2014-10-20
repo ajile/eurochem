@@ -1,0 +1,13 @@
+table.table
+  thead
+    block header
+      tr
+        if headers
+          each cell in headers
+            th= cell
+  tbody
+    block rows
+      if data
+        each fields in data
+          tr
+            include row

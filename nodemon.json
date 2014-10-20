@@ -1,0 +1,18 @@
+{
+  "verbose": true,
+  "ignore": [
+    "client/*",
+    "server/public/*",
+    "server/test/*",
+    "gulp/*",
+    ".git*",
+    "node_modules/*",
+    "bower_components/*"
+  ],
+  "env": {
+    "NODE_ENV": "development",
+    "DEBUG": "server*"
+  },
+  "script": "./server/bin/www",
+  "ext": "html js jade"
+}

@@ -1,0 +1,40 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/static/stylesheets/application.css')
+
+    //- script(type="text/javascript", src="/models/models.js")
+    //- script(type="text/javascript", src="/controllers/controllers.js")
+    //- script(type="text/javascript", src="/views/views.js")
+  body
+    div.content
+      block content
+
+    //- Scripts will apply after page rendering
+    block additional_scripts
+
+        //- Fault-tolerant file including uses general CDN firstable then looking
+        //- at self file storage.
+
+        //- Including jQuery
+        //- script(type="text/javascript", src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js")
+        // <script>window.jQuery || document.writeln('<script src="/static/javascripts/vendor/jquery.min.js"><\/script>')</script>
+
+        //- Including Underscore
+        //- script(type="text/javascript", src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js")
+        // <script>window._ || document.writeln('<script src="/static/javascripts/vendor/underscore-min.js"><\/script>')</script>
+
+        //- Including Backbone
+        //- script(type="text/javascript", src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js")
+        // <script>window.Backbone || document.writeln('<script src="/static/javascripts/vendor/backbone-min.js"><\/script>')</script>
+
+        //- Including SocketIO
+        //- script(type="text/javascript", src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js")
+        // <script>window.io || document.writeln('<script src="/static/javascripts/vendor/socket.io.min.js"><\/script>')</script>
+
+        //- Including Require
+        //- script(type="text/javascript", data-main="/static/javascripts/main.js", src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.15/require.min.js")
+
+        //- App parts going here
+        script(type="text/javascript", src="/static/javascripts/app.js")
