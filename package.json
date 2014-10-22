@@ -8,8 +8,7 @@
   "description": "The test task for the EuroChem ltd.",
   "private": true,
   "scripts": {
-    "start": "node ./server/bin/www",
-    "build-js": "browserify client/app.js > server/public/javascripts/app.js"
+    "start": "gulp develop"
   },
   "dependencies": {
     "backbone": "^1.1.2",

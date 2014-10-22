@@ -1,9 +1,20 @@
 REPORTER = dot
 
-test: test_server test_client
+develop: node_install bower_install app_build test
+
+app_build:
+	gulp build
+
+node_install:
+	npm install
+
+bower_install:
+	bower install
+
+test: test_server
 
 test_server:
-	@NODE_ENV=test gulp test
+	gulp test
 
 test_client:
 	@NODE_ENV=test ./node_modules/jasmine-node/bin/jasmine-node \
